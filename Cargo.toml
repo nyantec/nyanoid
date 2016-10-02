@@ -1,0 +1,4 @@
+[package]
+name = "nyanoid"
+version = "0.0.0"
+authors = ["Mikael Voss <mvs@nyantec.com>"]
