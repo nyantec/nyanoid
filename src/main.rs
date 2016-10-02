@@ -29,3 +29,45 @@ fn nyanoid(id: &str) -> Result<u32, &'static str> {
 
 	Ok(num)
 }
+
+#[cfg(test)]
+mod tests {
+	use nyanoid;
+	use std::str;
+
+	#[test]
+	fn empty() {
+		assert_eq!(nyanoid(""), Ok(0));
+	}
+
+	#[test]
+	fn fixed() {
+		assert_eq!(nyanoid("nyan"), Ok(276980));
+		assert_eq!(nyanoid("rust"), Ok(408096));
+	}
+
+	#[test]
+	fn invalid() {
+		assert!(nyanoid("ü").is_err());
+		assert!(nyanoid("🦄").is_err());
+	}
+
+	#[test]
+	fn range() {
+		for chr in b'a' .. b'z' + 1u8 {
+			assert_eq!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()),
+				Ok((chr - b'a' + 1u8) as u32));
+		}
+	}
+
+	#[test]
+	fn invalid_range() {
+		for chr in 0u8 .. b'a' {
+			assert!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()).is_err());
+		}
+
+		for chr in b'z' + 1u8 .. 128u8 {
+			assert!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()).is_err());
+		}
+	}
+}
