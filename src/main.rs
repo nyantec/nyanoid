@@ -54,20 +54,20 @@ mod tests {
 
 	#[test]
 	fn range() {
-		for chr in b'a' .. b'z' + 1u8 {
-			assert_eq!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()),
-				Ok((chr - b'a' + 1u8) as u32));
+		for chr in b'a'..(b'z' + 1u8) {
+			assert_eq!(nyanoid(str::from_utf8(&vec![chr]).unwrap()),
+			           Ok((chr - b'a' + 1u8) as u32));
 		}
 	}
 
 	#[test]
 	fn invalid_range() {
-		for chr in 0u8 .. b'a' {
-			assert!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()).is_err());
+		for chr in 0u8..b'a' {
+			assert!(nyanoid(str::from_utf8(&vec![chr]).unwrap()).is_err());
 		}
 
-		for chr in b'z' + 1u8 .. 128u8 {
-			assert!(nyanoid(str::from_utf8(&vec!(chr)).unwrap()).is_err());
+		for chr in (b'z' + 1u8)..128u8 {
+			assert!(nyanoid(str::from_utf8(&vec![chr]).unwrap()).is_err());
 		}
 	}
 }
