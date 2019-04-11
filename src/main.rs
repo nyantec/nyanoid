@@ -18,13 +18,13 @@ fn nyanoid(id: &str) -> Result<u32, &'static str> {
 	let mut num = 0u32;
 	let mut pow = 1u32;
 
-	for chr in id.as_bytes() {
-		if *chr < b'a' || *chr > b'z' {
+	for chr in id.bytes().rev() {
+		if chr < b'a' || chr > b'z' {
 			return Err("Identifier contains characters outside of valid range [a-z]");
 		}
 
 		num += (chr - b'a' + 1) as u32 * pow;
-		pow *= 27u32;
+		pow *= 26u32;
 	}
 
 	Ok(num)
