@@ -42,8 +42,11 @@ mod tests {
 
 	#[test]
 	fn fixed() {
-		assert_eq!(nyanoid("nyan"), Ok(276980));
-		assert_eq!(nyanoid("rust"), Ok(408096));
+		assert_eq!(nyanoid("a"), Ok(1));
+		assert_eq!(nyanoid("z"), Ok(26));
+		assert_eq!(nyanoid("aa"), Ok(26 + 1));
+		assert_eq!(nyanoid("az"), Ok(26 + 26));
+		assert_eq!(nyanoid("ngr"), Ok(9664));
 	}
 
 	#[test]
