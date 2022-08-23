@@ -32,7 +32,7 @@ fn nyanoid(id: &str) -> Result<u32, &'static str> {
 
 #[cfg(test)]
 mod tests {
-	use nyanoid;
+	use crate::nyanoid;
 	use std::str;
 
 	#[test]
