@@ -19,7 +19,7 @@ fn nyanoid(id: &str) -> Result<u32, &'static str> {
 	let mut pow = 1u32;
 
 	for chr in id.bytes().rev() {
-		if chr < b'a' || chr > b'z' {
+		if !(b'a'..=b'z').contains(&chr) {
 			return Err("Identifier contains characters outside of valid range [a-z]");
 		}
 
